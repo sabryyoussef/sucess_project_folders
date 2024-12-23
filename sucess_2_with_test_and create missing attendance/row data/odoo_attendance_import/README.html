@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo Attendance Import Script</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .note {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Odoo Attendance Import Script</h1>
+
+    <p>This script processes attendance records from an Excel file, provides visualizations and analysis, and optionally imports the data into Odoo.</p>
+
+    <h2>Features</h2>
+    <ul>
+        <li>Processes Excel file with attendance records</li>
+        <li>Extracts first check-in and last check-out for each day</li>
+        <li>Generates visualizations of working hours</li>
+        <li>Creates detailed statistical analysis</li>
+        <li>Optional import to Odoo system</li>
+    </ul>
+
+    <h2>Prerequisites</h2>
+    <ul>
+        <li>Python 3.10 or higher</li>
+        <li>Access to Odoo instance</li>
+        <li>Excel file with attendance records</li>
+    </ul>
+
+    <h2>Installation</h2>
+    <ol>
+        <li>Clone or download this repository to your local machine</li>
+        <li>Create a virtual environment:
+            <pre><code>cd "/path/to/odoo_attendance_import"
+python3 -m venv ../venv</code></pre>
+        </li>
+        <li>Activate the virtual environment:
+            <pre><code># On Linux/Mac
+source ../venv/bin/activate</code></pre>
+        </li>
+        <li>Install dependencies:
+            <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+    </ol>
+
+    <h2>Configuration</h2>
+    <ol>
+        <li>Copy the <code>.env.example</code> file to <code>.env</code>:
+            <pre><code>cp .env.example .env</code></pre>
+        </li>
+        <li>Edit the <code>.env</code> file with your Odoo credentials:
+            <pre><code>ODOO_URL=your_odoo_url
+ODOO_DB=your_database_name
+ODOO_USERNAME=your_username
+ODOO_PASSWORD=your_password
+api_key=your_api_key</code></pre>
+        </li>
+    </ol>
+
+    <h2>Usage</h2>
+    <ol>
+        <li>Place your Excel file in the project directory or update the file path in <code>import_attendance.py</code></li>
+        <li>Run the script:
+            <pre><code># Make sure you're in the project directory
+cd "/path/to/odoo_attendance_import"
+
+# Activate virtual environment if not already activated
+source ../venv/bin/activate
+
+# Run the script
+python import_attendance.py</code></pre>
+        </li>
+        <li>The script will:
+            <ul>
+                <li>Process the Excel file</li>
+                <li>Create visualizations in <code>attendance_analysis</code> directory</li>
+                <li>Show sample of processed records</li>
+                <li>Ask if you want to import to Odoo</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Output Files</h2>
+    <p>The script creates an <code>attendance_analysis</code> directory containing:</p>
+    <ul>
+        <li><code>daily_hours.png</code>: Graph showing daily hours worked by each employee</li>
+        <li><code>avg_hours.png</code>: Bar chart of average hours worked by employee</li>
+        <li><code>attendance_summary.csv</code>: Detailed statistics including:
+            <ul>
+                <li>Average, minimum, and maximum hours worked</li>
+                <li>Most common check-in and check-out times</li>
+                <li>Number of attendance records</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Excel File Format</h2>
+    <p>The Excel file should contain the following columns:</p>
+    <ul>
+        <li><code>AC-No.</code>: Employee ID/Badge number</li>
+        <li><code>Time</code>: Date and time of the record</li>
+        <li><code>State</code>: Check-in (C/In) or Check-out (C/Out) status</li>
+    </ul>
+
+    <h2>Support</h2>
+    <p>For any issues or questions, please contact your system administrator.</p>
+
+</body>
+</html>
